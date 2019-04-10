@@ -1,0 +1,5 @@
+I need: 
+
+- design mobile first 
+- navigation for chords - a layout that stays in place. 
+- chords will be in a state. 
