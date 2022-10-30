@@ -1,24 +1,51 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState, useEffect } from 'react';
+import Home from './components/home';
+import Tuning from './components/tuning';
+import { tunings } from './assets/tunings';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
+  const [bookmarkedChords, setBookmarkedChords] = useState([]);
+
+  const navItems = Object.keys(tunings);
+
+  useEffect(() => {
+    document.body.style.backgroundColor = '#faf9f6';
+  });
+
+  // const handleSetBookmark = id => {
+  //   // Open-g
+  //   // 
+  //   // setBookmarkedChords([...bookmarkedChords, ])
+  // }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <header>
+          <div className="container">
+            <div className="nav-layout">
+              <Link to="/"><h1>Banjo Tunings</h1></Link>
+            </div>
+          </div>
+        </header>
+
+        <section className="container" style={{ marginTop: "2rem" }}>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/:id" element={<Tuning />} />
+          </Routes>
+        </section>
+
+      </div>
+    </Router>
+
   );
 }
 
